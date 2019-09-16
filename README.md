@@ -31,7 +31,7 @@ Here's the stuff you get right off the bat when using Flask-Skeleton:
 Because sometimes you just want to see it work
 ```
 
-git clone https://github.com/petrgru/flask-skeleton-novy
+git clone https://github.com/SaikiDean/flask-skeleton-novy
 mv flask-skeleton-novy flask-skeleton
 cd flask-skeleton
 virtualenv -p python2 ../.venv
