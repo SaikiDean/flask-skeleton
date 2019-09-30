@@ -78,6 +78,7 @@ class zaciForm(Form):
             InputRequired(message="You can't leave this empty")
         ])
 
+
 class ValidateParent(Form):
     prijmeni = TextField("prijmeni", validators=[
         InputRequired(message="Vyzadovano.")])
