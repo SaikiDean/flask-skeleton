@@ -5,6 +5,12 @@ from flask import Blueprint, render_template
 from .forms import LogUserForm, secti,masoform,zaciForm
 from ..data.database import db
 from ..data.models import LogUser
+
+from flask import Blueprint, render_template, flash
+from .forms import LogUserForm, secti, masoform, ValidateParent
+from ..data.database import db
+from ..data.models import LogUser, Child, Parent
+
 blueprint = Blueprint('public', __name__)
 
 @blueprint.route('/', methods=['GET'])
