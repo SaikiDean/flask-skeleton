@@ -44,3 +44,41 @@ class secti(Form):
 class masoform(Form):
     typ=SelectField('Typ', choices=[(1, "Hovezi"), (2, "Veprove")], default=2)
 
+class zaciForm(Form):
+
+    jmeno = TextField('Choose your username', validators=[
+        Predicate(safe_characters, message="Please use only letters (a-z) and numbers"),
+        Length(min=6, max=30, message="Please use between 6 and 30 characters"),
+        InputRequired(message="You can't leave this empty")
+    ])
+    prijmeni = TextField('Choose your username', validators=[
+        Predicate(safe_characters, message="Please use only letters (a-z) and numbers"),
+        Length(min=6, max=30, message="Please use between 6 and 30 characters"),
+        InputRequired(message="You can't leave this empty")
+    ])
+    pohlavi = BooleanField('Pohlavi')
+    trida = IntegerField('Trida', validators=[
+        InputRequired(message="You can't leave this empty")
+    ])
+
+
+    class vstupnitestform(Form):
+        Jmeno = TextField('Jmeno tesujiciho', validators=[
+        Length(min=6, max=30, message="Please use between 6 and 30 characters"),
+        InputRequired(message="You can't leave this empty")
+    ])
+        otazka1 = IntegerField('Kolik je 3 + 3?', validators=[
+        InputRequired(message="You can't leave this empty")
+        ])
+
+        otazka2 = IntegerField('', validators=[
+            InputRequired(message="You can't leave this empty")
+        ])
+        otazka3 = TextField('Ktery predmet je nejlepsi na SSPU?', validators=[
+            InputRequired(message="You can't leave this empty")
+        ])
+
+class ValidateParent(Form):
+    prijmeni = TextField("prijmeni", validators=[
+        InputRequired(message="Vyzadovano.")])
+    pohlavi = SelectField(choices=[(1, "Zena"), (2, "Muz")], validators=[InputRequired()])
