@@ -31,7 +31,7 @@ class LogUser(CRUDModel):
 class Child(CRUDModel):
     __tablename__ = 'child'
     id = Column(Integer, primary_key=True)
-    parent_id = Column(String, ForeignKey('Parent.id'))
+    parent_id = Column(Integer, ForeignKey('Parent.id'))
     jmeno = Column(String,nullable=False, index=True)
 
 
@@ -44,4 +44,3 @@ class Parent(CRUDModel):
         children = relationship("Child", backref="parent")
         prijmeni = Column(String, nullable=False, index=True)
         pohlavi = Column(Integer, default=1)
-        @staticmethod
