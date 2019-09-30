@@ -78,6 +78,8 @@ def rodic():
     from .forms import ValidateParent
     form = ValidateParent()
     if form.validate_on_submit():
+        Parent.create(**form.data)
+        flash(message="Ulozeno.",category="info")
         return "OK"
     return render_template('public/rodic.tmpl', form =form)
 
