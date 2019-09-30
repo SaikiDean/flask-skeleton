@@ -81,5 +81,5 @@ def rodic():
         Parent.create(**form.data)
         flash(message="Ulozeno.",category="info")
         return "OK"
-    return render_template('public/rodic.tmpl', form =form)
+    return render_template('public/rodic.tmpl', form=form)
 
