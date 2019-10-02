@@ -82,5 +82,10 @@ class zaciForm(Form):
 class ValidateParent(Form):
     prijmeni = TextField("prijmeni", validators=[
         InputRequired(message="Vyzadovano.")])
-    pohlavi = IntegerField("pohlavi", validators=[
-        InputRequired()])
+    pohlavi = SelectField("pohlavi", choices=[(1, "zena"),(2, "muz")],
+                          default=1,validators=[InputRequired()])
+
+class ValidateDite(Form):
+    parent_id = SelectField(choices=[])
+    jmeno = TextField("prijmeni", validators=[
+        InputRequired(message="Vyzadovano.")])
