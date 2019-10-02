@@ -1,13 +1,9 @@
 """
 Logic for dashboard related routes
 """
-from flask import Blueprint, render_template
-from .forms import LogUserForm, secti,masoform,zaciForm
-from ..data.database import db
-from ..data.models import LogUser
 
 from flask import Blueprint, render_template, flash
-from .forms import LogUserForm, secti, masoform, ValidateParent
+from .forms import LogUserForm, secti, masoform, ValidateParent, ValidateDite
 from ..data.database import db
 from ..data.models import LogUser, Child, Parent
 
@@ -79,13 +75,27 @@ def chart():
     return render_template('chart.html', values=values, labels=labels, legend=legend)
 
 
+
 @blueprint.route("/vstup_rodic",methods=['GET', 'POST'])
 def rodic():
-    from .forms import ValidateParent
     form = ValidateParent()
-    if form.validate_on_submit():
+    if form.is_submitted():
         Parent.create(**form.data)
         flash(message="Ulozeno.",category="info")
-        return "OK"
     return render_template('public/rodic.tmpl', form=form)
+
+
+from flask import flash
+from .forms import ValidateDite
+from ..data.models import Child,Parent
+@blueprint.route('/vstup_dite', methods=['GET', 'POST'])
+def dite():
+    form = ValidateDite()
+    form.parent_id.choices = db.session.query(Parent.id,Parent.prijmeni).all()
+    if form.is_submitted():
+        Child.create(**form.data)
+        flash(message="Ulozeno",category="info")
+    return render_template('public/Child.tmpl', form=form)
+
+
 
